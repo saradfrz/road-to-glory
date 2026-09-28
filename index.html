@@ -1100,7 +1100,7 @@ function releaseAutoMute() {
   audio.muted = false;
 }
 playBtn.addEventListener("click", () => {
-  releaseAutoMute();
+  if (autoMuted && !audio.paused) { releaseAutoMute(); removeGestureListeners(); return; }
   if (audio.paused) { userPausedMusic = false; tryPlay(); }
   else { userPausedMusic = true; audio.pause(); }
 });
@@ -1111,6 +1111,7 @@ muteBtn.addEventListener("click", () => { autoMuted = false; audio.muted = !audi
 // 1) try normal playback; 2) if blocked, start it muted (always allowed) and 3) unmute on the first real gesture.
 const ACTIVATION_EVENTS = ["click", "pointerup", "touchend", "keydown"];
 function startOnGesture() {
+  if (e.target.closest("#player")) return;  
   if (userPausedMusic || !video.paused) return;
   if (autoMuted && !audio.paused) { releaseAutoMute(); removeGestureListeners(); return; }
   if (!audio.paused) { removeGestureListeners(); return; }
