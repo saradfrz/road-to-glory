@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Road to Glory | A hall of fame of iconic music gear</title>
+<meta name="description" content="A hall of fame for the guitars, basses, drum kits, keyboards and harmonicas behind rock's most recognizable sounds.">
+<style>
+:root{
+  --midnight-violet:#2E141Aff;
+  --rust-brown:#A23F17ff;
+  --rich-mahogany:#461A0Cff;
+  --mauve-shadow:#54394Dff;
+  --honey-bronze:#FAB255ff;
+  --black:#000;
+  --white:#fff;
+  --muted:#c9bcc2;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --pad:clamp(1rem,5vw,4rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--black);color:var(--white);
+  font-family:var(--sans);font-size:1rem;line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--honey-bronze);outline-offset:3px}
+
+/* ---------- Header ---------- */
+.hero{position:relative;height:min(74vh,580px);min-height:360px;overflow:hidden;background:var(--black)}
+.hero img{
+  width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  -webkit-mask-image:linear-gradient(to bottom,#000 50%,transparent 100%);
+          mask-image:linear-gradient(to bottom,#000 50%,transparent 100%);
+}
+.hero-text{position:absolute;left:0;right:0;bottom:0;padding:0 var(--pad) clamp(3rem,11vw,6.5rem);max-width:1200px;margin:0 auto}
+.hero p{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,4.2vw,2.5rem);color:var(--honey-bronze);text-shadow:0 2px 16px rgba(0,0,0,.9)}
+
+/* ---------- Layout ---------- */
+main{max-width:1200px;margin:0 auto;padding:0 var(--pad)}
+section{padding:clamp(2rem,6vw,4rem) 0}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.15;margin:0 0 1.25rem;letter-spacing:-.01em}
+.intro p{font-family:var(--serif);font-size:clamp(1.15rem,2.4vw,1.45rem);line-height:1.65;max-width:62ch;margin:0}
+
+/* ---------- Carousels ---------- */
+.carousel{position:relative}
+.viewport{overflow:hidden;border-radius:6px;position:relative}
+.track{display:flex;align-items:stretch;transition:transform .7s cubic-bezier(.65,0,.25,1)}
+.slide{flex:0 0 100%;min-width:0}
+.progress{
+  position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--honey-bronze);
+  transform-origin:left center;transform:scaleX(0);z-index:2;
+}
+.progress.run{animation:fill linear forwards}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.controls{display:flex;align-items:center;gap:.6rem;margin-top:1rem}
+.count{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums}
+.btn{
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--mauve-shadow);
+  background:transparent;display:inline-grid;place-items:center;cursor:pointer;
+  transition:background .2s,border-color .2s;
+}
+.btn:hover{background:var(--rust-brown);border-color:var(--rust-brown)}
+.btn svg{width:20px;height:20px;fill:currentColor}
+.dots{display:flex;gap:.5rem;margin-left:auto}
+.dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--honey-bronze);background:transparent;padding:0;cursor:pointer}
+.dot[aria-current="true"]{background:var(--honey-bronze)}
+
+/* Instrument card */
+.card{
+  height:100%;padding:clamp(1.1rem,3vw,2rem) clamp(1.1rem,3vw,2rem) calc(clamp(1.1rem,3vw,2rem) + 4px);
+  background:var(--midnight-violet);border-left:8px solid var(--rust-brown);
+}
+.card-head{display:flex;gap:1.1rem;align-items:center;margin-bottom:1rem}
+.thumb{
+  flex:0 0 100px;width:100px;height:100px;object-fit:cover;
+  border:2px solid var(--honey-bronze);border-radius:4px;background:var(--black);
+}
+.card h3{font-family:var(--serif);font-size:clamp(1.35rem,3.6vw,2rem);line-height:1.15;margin:0}
+.card .who{margin:.3rem 0 0;color:var(--honey-bronze);font-size:1.05rem}
+.card .desc{margin:0 0 1.25rem;font-family:var(--serif);font-size:.95rem;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.9rem 1.5rem;margin:0}
+.facts div{border-top:1px solid var(--mauve-shadow);padding-top:.5rem}
+.facts dt{font-size:.875rem;color:var(--muted)}
+.facts dd{margin:0;font-size:1rem}
+.facts .value{color:var(--honey-bronze);font-weight:600}
+
+/* ---------- Video ---------- */
+.video-frame{border:1px solid var(--mauve-shadow);background:var(--rich-mahogany);padding:clamp(.5rem,1.5vw,1rem);border-radius:6px}
+video{width:100%;aspect-ratio:16/9;background:var(--black);border-radius:3px;display:block}
+.caption{margin:.9rem 0 0;color:var(--muted)}
+
+/* ---------- Testimonials ---------- */
+.quote{
+  height:100%;background:var(--rich-mahogany);border-left:8px solid var(--honey-bronze);
+  padding:clamp(1.25rem,3vw,2.25rem) clamp(1.25rem,3vw,2.25rem) calc(clamp(1.25rem,3vw,2.25rem) + 4px);
+  display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;
+}
+.quote blockquote{margin:0;font-family:var(--serif);font-size:clamp(1.15rem,2.6vw,1.6rem);line-height:1.55;max-width:60ch}
+.person{display:flex;align-items:center;gap:1rem}
+.avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--honey-bronze);background:var(--mauve-shadow);flex:0 0 64px}
+.person strong{display:block}
+.person span{color:var(--muted);font-size:.95rem}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--mauve-shadow);padding:1.75rem var(--pad) 6.5rem;text-align:center;color:var(--muted);font-size:.95rem}
+
+/* ---------- Floating player ---------- */
+.player{
+  position:fixed;z-index:50;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));
+  display:flex;align-items:center;gap:.75rem;
+  background:var(--rich-mahogany);border:1px solid var(--honey-bronze);border-radius:999px;
+  padding:.4rem .5rem .4rem 1rem;box-shadow:0 8px 30px rgba(0,0,0,.7);
+}
+.eq{display:flex;align-items:flex-end;gap:2px;height:16px;flex:0 0 auto}
+.eq i{display:block;width:3px;height:4px;background:var(--honey-bronze)}
+.player[data-state="playing"] .eq i{animation:eq .9s ease-in-out infinite}
+.player[data-state="playing"] .eq i:nth-child(2){animation-delay:.25s}
+.player[data-state="playing"] .eq i:nth-child(3){animation-delay:.5s}
+@keyframes eq{0%,100%{height:4px}50%{height:16px}}
+.player .label{font-size:.95rem;white-space:nowrap}
+.player .btn{width:40px;height:40px;border-color:var(--rust-brown)}
+.player[data-state="playing"] .i-play,.player[data-state="paused"] .i-pause{display:none}
+.player[data-muted="true"] .i-vol,.player[data-muted="false"] .i-mute{display:none}
+
+@media (max-width:520px){
+  .player{left:.75rem;right:.75rem;justify-content:space-between}
+  .player .label{font-size:.9rem;white-space:normal;flex:1}
+  .card-head{gap:.85rem}
+  .thumb{flex-basis:100px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .track{transition:none}
+  .eq i{animation:none!important;height:10px!important}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img id="heroImg" alt="Road to Glory: AI-generated artwork of iconic musical instruments">
+  <div class="hero-text">
+    <p>The gear behind the records</p>
+  </div>
+</header>
+
+<main>
+  <section class="intro" aria-labelledby="about">
+    <h2 id="about">A hall of fame for iconic gear</h2>
+    <p>Road to Glory celebrates the guitars, basses, drum kits, keyboards and harmonicas that famous musicians turned into legends. Browse the collection, put the music on, and watch the reel.</p>
+  </section>
+
+  <section aria-labelledby="collection">
+    <h2 id="collection">The collection</h2>
+    <div class="carousel" id="gearCarousel" role="region" aria-roledescription="carousel" aria-label="Iconic instruments">
+      <div class="viewport">
+        <div class="track" id="gearTrack" aria-live="off"></div>
+        <div class="progress" aria-hidden="true"></div>
+      </div>
+      <div class="controls">
+        <button class="btn" data-prev type="button" aria-label="Previous instrument"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z"/></svg></button>
+        <button class="btn" data-toggle type="button" aria-label="Pause auto-scroll" aria-pressed="false">
+          <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+          <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><path d="M7 4v16l13-8z"/></svg>
+        </button>
+        <button class="btn" data-next type="button" aria-label="Next instrument"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 10 4l8 8-8 8-1.4-1.4L15.2 12z"/></svg></button>
+        <span class="count" data-count aria-live="off"></span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="reel">
+    <h2 id="reel">Watch the reel</h2>
+    <div class="video-frame">
+      <video id="reelVideo" controls playsinline preload="none">
+        Your browser does not support embedded video.
+      </video>
+    </div>
+    <p class="caption">Press play to start the video. The background music pauses while it plays.</p>
+  </section>
+
+  <section aria-labelledby="voices">
+    <h2 id="voices">What visitors say</h2>
+    <div class="carousel" id="quoteCarousel" role="region" aria-roledescription="carousel" aria-label="Testimonials">
+      <div class="viewport">
+        <div class="track" id="quoteTrack" aria-live="off"></div>
+        <div class="progress" aria-hidden="true"></div>
+      </div>
+      <div class="controls">
+        <div class="dots" data-dots role="group" aria-label="Choose testimonial"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>All images on this site were generated by AI. &copy; <span id="year">2026</span> Road to Glory.</p>
+</footer>
+
+<div class="player" id="player" role="region" aria-label="Background music" data-state="paused" data-muted="false">
+  <div class="eq" aria-hidden="true"><i></i><i></i><i></i></div>
+  <span class="label" id="playerLabel">Paused: Analog Horizons</span>
+  <button class="btn" id="playBtn" type="button" aria-label="Play music">
+    <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>
+    <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+  </button>
+  <button class="btn" id="muteBtn" type="button" aria-label="Silence music" aria-pressed="false">
+    <svg class="i-vol" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+    <svg class="i-mute" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 12A4.5 4.5 0 0 0 14 8v2.2l2.4 2.4c.1-.2.1-.4.1-.6zM19 12c0 .9-.2 1.8-.5 2.6l1.5 1.5A9 9 0 0 0 21 12a9 9 0 0 0-7-8.8v2.1A7 7 0 0 1 19 12zM4.3 3 3 4.3 7.7 9H3v6h4l5 5v-6.7l4.2 4.2c-.7.5-1.4.9-2.2 1.1v2.1a9 9 0 0 0 3.5-1.7l2.2 2.2 1.3-1.3L4.3 3zM12 4 9.9 6.1 12 8.2z"/></svg>
+  </button>
+</div>
+
+<audio id="bgm" loop preload="auto"></audio>
+
+<script>
+"use strict";
+
+/* ---------- Config ---------- */
+const CONFIG = {
+  bucket: "https://lmwxqzustlrpfmbhvjbx.supabase.co/storage/v1/object/public/dimdimmarketing/",
+  heroImage: "img/road_to_glory.png",
+  music: "sound/analog_horizons_remastered.mp3",
+  video: "video/hall_of_fame_02.mp4",
+  videoPoster: "img/road_to_glory.png",
+  gearIntervalMs: 10000,
+  quoteIntervalMs: 7000,
+  musicVolume: 0.5
+};
+const url = (path) => `${CONFIG.bucket}/${path}`;
+
+/* ---------- Data (hardcoded from data.csv) ---------- */
+const INSTRUMENTS = [
+  {
+    "id": 1,
+    "name": "Black Strat",
+    "year": 1969,
+    "usedBy": "David Gilmour",
+    "description": "Gilmour's main Stratocaster from 1970 onward, used on Dark Side of the Moon, Wish You Were Here and The Wall.",
+    "brand": "Fender",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Stratocaster",
+    "status": "sold at charity auction 2019",
+    "value": 3975000.0
+  },
+  {
+    "id": 2,
+    "name": "Frankenstrat",
+    "year": 1975,
+    "usedBy": "Eddie Van Halen",
+    "description": "Homemade guitar assembled from Strat and Gibson parts, defining Van Halen's early tone and red/white/black paint job.",
+    "brand": "Fender/Gibson (parts)",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Frankenstrat",
+    "status": "on display at EVH Gear museum",
+    "value": null
+  },
+  {
+    "id": 3,
+    "name": "EDS-1275 Doubleneck",
+    "year": 1971,
+    "usedBy": "Jimmy Page",
+    "description": "Double-necked 6/12-string guitar used live for 'Stairway to Heaven'.",
+    "brand": "Gibson",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "EDS-1275",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 4,
+    "name": "Number One Les Paul",
+    "year": 1959,
+    "usedBy": "Jimmy Page",
+    "description": "Page's primary Les Paul Standard used throughout Led Zeppelin's career.",
+    "brand": "Gibson",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Les Paul Standard",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 5,
+    "name": "Angus Young SG",
+    "year": 1970,
+    "usedBy": "Angus Young",
+    "description": "Long-time stage guitar of AC/DC's lead guitarist, associated with his schoolboy-uniform performances.",
+    "brand": "Gibson",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "SG Standard",
+    "status": "used on tour, private collection",
+    "value": null
+  },
+  {
+    "id": 6,
+    "name": "Monkey / Old Boy SG",
+    "year": 1965,
+    "usedBy": "Tony Iommi",
+    "description": "Iommi's heavily modified SG, central to Black Sabbath's signature heavy tone.",
+    "brand": "Gibson",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "SG Special",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 7,
+    "name": "Micawber Telecaster",
+    "year": 1953,
+    "usedBy": "Keith Richards",
+    "description": "Richards' main five-string open-G tuned guitar used since the mid-1970s.",
+    "brand": "Fender",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Telecaster",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 8,
+    "name": "Red Special",
+    "year": 1963,
+    "usedBy": "Brian May",
+    "description": "Homemade guitar built by May and his father from household materials, used on virtually every Queen recording.",
+    "brand": "Homemade (May family)",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Red Special",
+    "status": "owned and used by Brian May",
+    "value": null
+  },
+  {
+    "id": 9,
+    "name": "Appetite Les Paul Replica",
+    "year": 1987,
+    "usedBy": "Slash",
+    "description": "Kris Derrig-built replica used to record most of Guns N' Roses' Appetite for Destruction.",
+    "brand": "Gibson (Derrig replica)",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Les Paul Standard replica",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 10,
+    "name": "Blackie",
+    "year": 1970,
+    "usedBy": "Eric Clapton",
+    "description": "Composite Stratocaster assembled from several vintage bodies/necks, Clapton's main guitar through the late 70s and 80s.",
+    "brand": "Fender",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Stratocaster",
+    "status": "sold at Christie's auction 2004",
+    "value": 959500.0
+  },
+  {
+    "id": 11,
+    "name": "Number One / First Wife",
+    "year": 1963,
+    "usedBy": "Stevie Ray Vaughan",
+    "description": "Vaughan's primary battered Stratocaster used throughout his recording and touring career.",
+    "brand": "Fender",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Stratocaster",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 12,
+    "name": "Polka Dot Flying V",
+    "year": 1982,
+    "usedBy": "Randy Rhoads",
+    "description": "Custom Flying V built by Karl Sandoval for Rhoads' work with Ozzy Osbourne's band.",
+    "brand": "Gibson (Sandoval custom)",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Flying V custom",
+    "status": "on display",
+    "value": null
+  },
+  {
+    "id": 13,
+    "name": "Blackmore Stratocaster",
+    "year": 1970,
+    "usedBy": "Ritchie Blackmore",
+    "description": "Scalloped-fretboard Stratocaster used with Deep Purple and Rainbow.",
+    "brand": "Fender",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Stratocaster",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 14,
+    "name": "National Style O",
+    "year": 1937,
+    "usedBy": "Mark Knopfler",
+    "description": "Resonator guitar pictured on the cover of Dire Straits' Brothers in Arms.",
+    "brand": "National",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Style O",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 15,
+    "name": "Pearly Gates",
+    "year": 1959,
+    "usedBy": "Billy Gibbons",
+    "description": "Gibbons' famed sunburst Les Paul, considered one of the most valuable vintage guitars in rock.",
+    "brand": "Gibson",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Les Paul Standard",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 16,
+    "name": "The Edge Explorer",
+    "year": 1976,
+    "usedBy": "The Edge",
+    "description": "Gibson Explorer used extensively on U2's early 1980s recordings and tours.",
+    "brand": "Gibson",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Explorer",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 17,
+    "name": "Joe Perry Les Paul",
+    "year": 1959,
+    "usedBy": "Joe Perry",
+    "description": "Vintage Les Paul long associated with Aerosmith's guitarist.",
+    "brand": "Gibson",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Les Paul Standard",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 18,
+    "name": "Geddy Lee Rickenbacker",
+    "year": 1972,
+    "usedBy": "Geddy Lee",
+    "description": "Rickenbacker 4001 bass used on Rush's classic 1970s-80s albums and tours.",
+    "brand": "Rickenbacker",
+    "type": "bass",
+    "thumb": "bass.png",
+    "model": "4001",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 19,
+    "name": "Steve Harris Precision Bass",
+    "year": 1974,
+    "usedBy": "Steve Harris",
+    "description": "Fender Precision Bass used by Iron Maiden's bassist and primary songwriter.",
+    "brand": "Fender",
+    "type": "bass",
+    "thumb": "bass.png",
+    "model": "Precision Bass",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 20,
+    "name": "Deacy Bass",
+    "year": 1972,
+    "usedBy": "John Deacon",
+    "description": "Fender Precision Bass used by Queen's bassist on most studio recordings.",
+    "brand": "Fender",
+    "type": "bass",
+    "thumb": "bass.png",
+    "model": "Precision Bass",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 21,
+    "name": "Betsy Precision Bass",
+    "year": 1957,
+    "usedBy": "Sting",
+    "description": "Fender Precision Bass used by The Police's bassist and frontman.",
+    "brand": "Fender",
+    "type": "bass",
+    "thumb": "bass.png",
+    "model": "Precision Bass",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 22,
+    "name": "Cliff Burton Aria Pro II",
+    "year": 1980,
+    "usedBy": "Cliff Burton",
+    "description": "Bass used by Metallica's bassist, known for the 'Anesthesia' bass solo.",
+    "brand": "Aria Pro II",
+    "type": "bass",
+    "thumb": "bass.png",
+    "model": "SB-1000",
+    "status": "destroyed in 1986 tour bus accident",
+    "value": null
+  },
+  {
+    "id": 23,
+    "name": "Flea Modulus Bass",
+    "year": 1987,
+    "usedBy": "Flea",
+    "description": "Graphite-neck bass used by the Red Hot Chili Peppers' bassist in the late 1980s.",
+    "brand": "Modulus Graphite",
+    "type": "bass",
+    "thumb": "bass.png",
+    "model": "Quantum 4",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 24,
+    "name": "James Hetfield ESP Explorer",
+    "year": 1984,
+    "usedBy": "James Hetfield",
+    "description": "ESP Explorer-style guitar used by Metallica's frontman during the band's early thrash years.",
+    "brand": "ESP",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Explorer custom",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 25,
+    "name": "Kirk Hammett Flying V",
+    "year": 1974,
+    "usedBy": "Kirk Hammett",
+    "description": "Gibson Flying V used by Metallica's lead guitarist in the mid-1980s.",
+    "brand": "Gibson",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Flying V",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 26,
+    "name": "Alex Lifeson ES-355",
+    "year": 1975,
+    "usedBy": "Alex Lifeson",
+    "description": "Semi-hollow guitar used by Rush's guitarist across multiple 1980s tours.",
+    "brand": "Gibson",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "ES-355",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 27,
+    "name": "Pete Townshend SG Special",
+    "year": 1966,
+    "usedBy": "Pete Townshend",
+    "description": "SG-style guitar associated with The Who's guitarist, still used into the 1980s.",
+    "brand": "Gibson",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "SG Special",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 28,
+    "name": "Ronnie Wood Zemaitis",
+    "year": 1975,
+    "usedBy": "Ronnie Wood",
+    "description": "Custom guitar built by luthier Tony Zemaitis, used by the Rolling Stones guitarist.",
+    "brand": "Zemaitis",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "custom",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 29,
+    "name": "Freddie Mercury Bechstein",
+    "year": 1975,
+    "usedBy": "Freddie Mercury",
+    "description": "Grand piano used by Queen's frontman on stage and in the 'Bohemian Rhapsody' video.",
+    "brand": "C. Bechstein",
+    "type": "piano",
+    "thumb": "piano.png",
+    "model": "grand piano",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 30,
+    "name": "Elton John Tour Piano",
+    "year": 1980,
+    "usedBy": "Elton John",
+    "description": "Grand piano used on Elton John's arena tours through the 1980s.",
+    "brand": "Yamaha",
+    "type": "piano",
+    "thumb": "piano.png",
+    "model": "CFIII grand",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 31,
+    "name": "Rick Wakeman Keyboard Rig",
+    "year": 1978,
+    "usedBy": "Rick Wakeman",
+    "description": "Multi-keyboard stage rig used by Yes's keyboardist, including Minimoog and Birotron.",
+    "brand": "Moog/Birotron",
+    "type": "keyboard",
+    "thumb": "keyboard.png",
+    "model": "stage rig",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 32,
+    "name": "Tony Banks Keyboard Rig",
+    "year": 1981,
+    "usedBy": "Tony Banks",
+    "description": "Synthesizer and piano rig used by Genesis's keyboardist through the band's 1980s albums.",
+    "brand": "Sequential Circuits/Yamaha",
+    "type": "keyboard",
+    "thumb": "keyboard.png",
+    "model": "Prophet-5 rig",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 33,
+    "name": "Jonathan Cain Piano Rig",
+    "year": 1981,
+    "usedBy": "Jonathan Cain",
+    "description": "Keyboard used to compose and perform Journey's 'Don't Stop Believin''.",
+    "brand": "Yamaha",
+    "type": "keyboard",
+    "thumb": "keyboard.png",
+    "model": "electric grand",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 34,
+    "name": "Depeche Mode Synclavier",
+    "year": 1983,
+    "usedBy": "Depeche Mode",
+    "description": "Digital synthesizer/sampler used extensively on Depeche Mode's early-80s studio albums.",
+    "brand": "New England Digital",
+    "type": "synthesizer",
+    "thumb": "synthesizer.png",
+    "model": "Synclavier II",
+    "status": "used in studio",
+    "value": null
+  },
+  {
+    "id": 35,
+    "name": "Nick Rhodes Jupiter-8",
+    "year": 1981,
+    "usedBy": "Nick Rhodes",
+    "description": "Analog synthesizer central to Duran Duran's early-1980s sound.",
+    "brand": "Roland",
+    "type": "synthesizer",
+    "thumb": "synthesizer.png",
+    "model": "Jupiter-8",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 36,
+    "name": "Eurythmics PPG Wave",
+    "year": 1982,
+    "usedBy": "Dave Stewart",
+    "description": "Digital-analog hybrid synthesizer used to create the 'Sweet Dreams' riff.",
+    "brand": "PPG",
+    "type": "synthesizer",
+    "thumb": "synthesizer.png",
+    "model": "Wave 2.2",
+    "status": "used in studio",
+    "value": null
+  },
+  {
+    "id": 37,
+    "name": "The Cloud Guitar",
+    "year": 1983,
+    "usedBy": "Prince",
+    "description": "Custom guitar with a cloud-shaped body, featured in the film and soundtrack Purple Rain.",
+    "brand": "Knut-Koupee (custom)",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Cloud custom",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 38,
+    "name": "Sheila E. Timbales",
+    "year": 1984,
+    "usedBy": "Sheila E.",
+    "description": "Timbale set used on tour with Prince and on Sheila E.'s own 1980s recordings.",
+    "brand": "Latin Percussion",
+    "type": "percussion",
+    "thumb": "percussion.png",
+    "model": "timbales",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 39,
+    "name": "Phil Collins Gated Drum Kit",
+    "year": 1981,
+    "usedBy": "Phil Collins",
+    "description": "Acoustic kit paired with the gated-reverb studio technique heard on 'In the Air Tonight'.",
+    "brand": "Gretsch",
+    "type": "drum kit",
+    "thumb": "drumkit.png",
+    "model": "stage/studio kit",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 40,
+    "name": "Rick Allen Hybrid Kit",
+    "year": 1985,
+    "usedBy": "Rick Allen",
+    "description": "Custom electronic-acoustic hybrid drum kit built after Allen lost his left arm, allowing him to continue drumming for Def Leppard.",
+    "brand": "Simmons/Tama",
+    "type": "drum kit",
+    "thumb": "drumkit.png",
+    "model": "hybrid electronic kit",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 41,
+    "name": "John Bonham Ludwig Kit",
+    "year": 1975,
+    "usedBy": "John Bonham",
+    "description": "Ludwig drum kit used by Led Zeppelin's drummer through the band's final years.",
+    "brand": "Ludwig",
+    "type": "drum kit",
+    "thumb": "drumkit.png",
+    "model": "Vistalite kit",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 42,
+    "name": "Neil Peart Tour Kit",
+    "year": 1982,
+    "usedBy": "Neil Peart",
+    "description": "Large multi-piece drum kit used by Rush's drummer on 1980s tours.",
+    "brand": "Tama",
+    "type": "drum kit",
+    "thumb": "drumkit.png",
+    "model": "Artstar kit",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 43,
+    "name": "Tommy Lee Roller Coaster Kit",
+    "year": 1985,
+    "usedBy": "Tommy Lee",
+    "description": "Elaborately rigged drum kit used by Motley Crue's drummer, including a rotating 'roller coaster' riser.",
+    "brand": "Pearl",
+    "type": "drum kit",
+    "thumb": "drumkit.png",
+    "model": "custom rotating kit",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 44,
+    "name": "Alex Van Halen Tour Kit",
+    "year": 1980,
+    "usedBy": "Alex Van Halen",
+    "description": "Large Ludwig drum kit used by Van Halen's drummer through the band's classic-era tours.",
+    "brand": "Ludwig",
+    "type": "drum kit",
+    "thumb": "drumkit.png",
+    "model": "stage kit",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 45,
+    "name": "Lars Ulrich Tour Kit",
+    "year": 1986,
+    "usedBy": "Lars Ulrich",
+    "description": "Drum kit used by Metallica's drummer during the Master of Puppets era.",
+    "brand": "Tama",
+    "type": "drum kit",
+    "thumb": "drumkit.png",
+    "model": "Superstar kit",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 46,
+    "name": "Nicko McBrain Tour Kit",
+    "year": 1983,
+    "usedBy": "Nicko McBrain",
+    "description": "Drum kit used by Iron Maiden's drummer beginning with the Piece of Mind tour.",
+    "brand": "Premier",
+    "type": "drum kit",
+    "thumb": "drumkit.png",
+    "model": "stage kit",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 47,
+    "name": "Magic Dick Harmonica",
+    "year": 1975,
+    "usedBy": "Magic Dick",
+    "description": "Chromatic and diatonic harmonicas used by the J. Geils Band's harmonica player on 'Centerfold'.",
+    "brand": "Hohner",
+    "type": "harmonica",
+    "thumb": "harmonica.png",
+    "model": "Chromonica/Marine Band",
+    "status": "private collection",
+    "value": null
+  },
+  {
+    "id": 48,
+    "name": "Springsteen Rack Harmonica",
+    "year": 1978,
+    "usedBy": "Bruce Springsteen",
+    "description": "Harmonica played on a neck rack during E Street Band performances and recordings.",
+    "brand": "Hohner",
+    "type": "harmonica",
+    "thumb": "harmonica.png",
+    "model": "Marine Band",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 49,
+    "name": "Rebel Yell Guitar",
+    "year": 1983,
+    "usedBy": "Steve Stevens",
+    "description": "Guitar used by Billy Idol's guitarist to record and perform 'Rebel Yell'.",
+    "brand": "Hamer",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "custom",
+    "status": "used on tour",
+    "value": null
+  },
+  {
+    "id": 50,
+    "name": "Rudolf Schenker Flying V",
+    "year": 1980,
+    "usedBy": "Rudolf Schenker",
+    "description": "Gibson Flying V used by the Scorpions' rhythm guitarist throughout the band's 1980s world tours.",
+    "brand": "Gibson",
+    "type": "guitar",
+    "thumb": "guitar.png",
+    "model": "Flying V",
+    "status": "used on tour, private collection",
+    "value": null
+  }
+];
+
+const TESTIMONIALS = [
+  {
+    quote: "I came for the Stratocasters and stayed for the drum kits. Every card tells you exactly what the instrument did for the record.",
+    name: "Marta Ilves",
+    role: "Vintage gear collector",
+    avatar: "img/profile_image.png"
+  },
+  {
+    quote: "As a luthier I love seeing the homemade builds next to the museum pieces. It reminds me that great tone starts in a workshop.",
+    name: "Dario Okafor",
+    role: "Guitar builder",
+    avatar: "img/profile_image_02.jpeg"
+  }
+];
+
+/* ---------- Helpers ---------- */
+const el = (tag, props = {}, children = []) => {
+  const node = document.createElement(tag);
+  Object.entries(props).forEach(([k, v]) => {
+    if (k === "class") node.className = v;
+    else if (k === "text") node.textContent = v;
+    else node.setAttribute(k, v);
+  });
+  children.forEach((c) => node.appendChild(c));
+  return node;
+};
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+/* ---------- Generic auto-advancing carousel ---------- */
+class Carousel {
+  constructor(root, { intervalMs }) {
+    this.root = root;
+    this.track = root.querySelector(".track");
+    this.slides = Array.from(this.track.children);
+    this.bar = root.querySelector(".progress");
+    this.counter = root.querySelector("[data-count]");
+    this.dotsBox = root.querySelector("[data-dots]");
+    this.toggleBtn = root.querySelector("[data-toggle]");
+    this.index = 0;
+    this.userPaused = false;
+    this.hovering = false;
+
+    this.bar.style.animationDuration = `${intervalMs}ms`;
+    this.bar.addEventListener("animationend", () => this.next());
+
+    const prev = root.querySelector("[data-prev]");
+    const next = root.querySelector("[data-next]");
+    if (prev) prev.addEventListener("click", () => this.prev());
+    if (next) next.addEventListener("click", () => this.next());
+    if (this.toggleBtn) this.toggleBtn.addEventListener("click", () => this.toggle());
+
+    if (this.dotsBox) {
+      this.dots = this.slides.map((_, i) => {
+        const b = el("button", { class: "dot", type: "button", "aria-label": `Show testimonial ${i + 1}` });
+        b.addEventListener("click", () => this.go(i));
+        this.dotsBox.appendChild(b);
+        return b;
+      });
+    }
+
+    root.addEventListener("mouseenter", () => { this.hovering = true; this.sync(); });
+    root.addEventListener("mouseleave", () => { this.hovering = false; this.sync(); });
+    root.addEventListener("focusin", () => { this.hovering = true; this.sync(); });
+    root.addEventListener("focusout", () => { this.hovering = false; this.sync(); });
+
+    let startX = null;
+    root.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+    root.addEventListener("touchend", (e) => {
+      if (startX === null) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      startX = null;
+      if (Math.abs(dx) > 50) dx < 0 ? this.next() : this.prev();
+    }, { passive: true });
+
+    this.go(0);
+  }
+  next() { this.go(this.index + 1); }
+  prev() { this.go(this.index - 1); }
+  go(n) {
+    const len = this.slides.length;
+    this.index = (n + len) % len;
+    this.track.style.transform = `translateX(${-this.index * 100}%)`;
+    this.slides.forEach((s, i) => {
+      s.setAttribute("aria-hidden", String(i !== this.index));
+      s.inert = i !== this.index;
+    });
+    if (this.counter) this.counter.textContent = `${this.index + 1} of ${len}`;
+    if (this.dots) this.dots.forEach((d, i) => d.setAttribute("aria-current", String(i === this.index)));
+    this.restart();
+  }
+  restart() {
+    this.bar.classList.remove("run");
+    void this.bar.offsetWidth; // reflow so the animation restarts
+    this.bar.classList.add("run");
+    this.sync();
+  }
+  sync() {
+    this.bar.style.animationPlayState = (this.userPaused || this.hovering) ? "paused" : "running";
+  }
+  toggle() {
+    this.userPaused = !this.userPaused;
+    this.toggleBtn.setAttribute("aria-pressed", String(this.userPaused));
+    this.toggleBtn.setAttribute("aria-label", this.userPaused ? "Resume auto-scroll" : "Pause auto-scroll");
+    this.toggleBtn.querySelector(".i-pause").style.display = this.userPaused ? "none" : "";
+    this.toggleBtn.querySelector(".i-play").style.display = this.userPaused ? "" : "none";
+    this.sync();
+  }
+}
+
+/* ---------- Build instrument cards ---------- */
+function buildGearCard(item) {
+  const facts = [
+    ["Year built", String(item.year)],
+    ["Brand", item.brand],
+    ["Model", item.model],
+    ["Type", cap(item.type)],
+    ["Status", cap(item.status)]
+  ];
+  if (item.value) facts.push(["Estimated value", money.format(item.value)]);
+
+  const dl = el("dl", { class: "facts" });
+  facts.forEach(([label, value]) => {
+    const dd = el("dd", { text: value });
+    if (label === "Estimated value") dd.className = "value";
+    dl.appendChild(el("div", {}, [el("dt", { text: label }), dd]));
+  });
+
+  const thumb = el("img", {
+    class: "thumb", width: "100", height: "100", loading: "lazy",
+    src: url(`img/${item.thumb}`), alt: `${cap(item.type)} thumbnail`
+  });
+
+  const head = el("div", { class: "card-head" }, [
+    thumb,
+    el("div", {}, [
+      el("h3", { text: item.name }),
+      el("p", { class: "who", text: `Played by ${item.usedBy}` })
+    ])
+  ]);
+
+  return el("article", { class: "slide", role: "group", "aria-roledescription": "slide" }, [
+    el("div", { class: "card" }, [head, el("p", { class: "desc", text: item.description, title: item.description }), dl])
+  ]);
+}
+
+function buildQuote(t) {
+  return el("figure", { class: "slide", role: "group", "aria-roledescription": "slide", style: "margin:0" }, [
+    el("div", { class: "quote" }, [
+      el("blockquote", { text: `\u201C${t.quote}\u201D` }),
+      el("figcaption", { class: "person" }, [
+        el("img", { class: "avatar", src: url(t.avatar), alt: `Portrait of ${t.name}`, width: "64", height: "64", loading: "lazy" }),
+        el("div", {}, [el("strong", { text: t.name }), el("span", { text: t.role })])
+      ])
+    ])
+  ]);
+}
+
+/* ---------- Init ---------- */
+document.getElementById("heroImg").src = url(CONFIG.heroImage);
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const gearTrack = document.getElementById("gearTrack");
+INSTRUMENTS.forEach((i) => gearTrack.appendChild(buildGearCard(i)));
+const quoteTrack = document.getElementById("quoteTrack");
+TESTIMONIALS.forEach((t) => quoteTrack.appendChild(buildQuote(t)));
+
+new Carousel(document.getElementById("gearCarousel"), { intervalMs: CONFIG.gearIntervalMs });
+new Carousel(document.getElementById("quoteCarousel"), { intervalMs: CONFIG.quoteIntervalMs });
+
+/* ---------- Video (loads only on demand) ---------- */
+const video = document.getElementById("reelVideo");
+video.poster = url(CONFIG.videoPoster);
+video.src = url(CONFIG.video);
+
+/* ---------- Music player ---------- */
+const audio = document.getElementById("bgm");
+const player = document.getElementById("player");
+const playBtn = document.getElementById("playBtn");
+const muteBtn = document.getElementById("muteBtn");
+const label = document.getElementById("playerLabel");
+audio.src = url(CONFIG.music);
+audio.volume = CONFIG.musicVolume;
+
+let userPausedMusic = false;
+let resumeAfterVideo = false;
+
+function renderPlayer() {
+  const playing = !audio.paused;
+  player.dataset.state = playing ? "playing" : "paused";
+  label.textContent = `${playing ? "Playing" : "Paused"}: Analog Horizons`;
+  playBtn.setAttribute("aria-label", playing ? "Pause music" : "Play music");
+  player.dataset.muted = String(audio.muted);
+  muteBtn.setAttribute("aria-pressed", String(audio.muted));
+  muteBtn.setAttribute("aria-label", audio.muted ? "Unsilence music" : "Silence music");
+}
+function tryPlay() {
+  return audio.play().catch(() => { /* blocked until a user gesture */ });
+}
+playBtn.addEventListener("click", () => {
+  if (audio.paused) { userPausedMusic = false; tryPlay(); }
+  else { userPausedMusic = true; audio.pause(); }
+});
+muteBtn.addEventListener("click", () => { audio.muted = !audio.muted; renderPlayer(); });
+["play", "pause", "volumechange"].forEach((ev) => audio.addEventListener(ev, renderPlayer));
+
+// Try to autoplay right away. Browsers usually block this until the visitor interacts,
+// so keep retrying on real activation events (pointerdown/touchstart don't count in all browsers).
+tryPlay();
+const ACTIVATION_EVENTS = ["click", "pointerup", "touchend", "keydown"];
+function startOnGesture() {
+  if (userPausedMusic || !video.paused || !audio.paused) return;
+  audio.play().then(removeGestureListeners).catch(() => { /* keep listening */ });
+}
+function removeGestureListeners() {
+  ACTIVATION_EVENTS.forEach((ev) => window.removeEventListener(ev, startOnGesture));
+}
+ACTIVATION_EVENTS.forEach((ev) => window.addEventListener(ev, startOnGesture, { passive: true }));
+audio.addEventListener("play", removeGestureListeners);
+
+// Stop the background music before the video plays, and never let both run together.
+video.addEventListener("play", () => {
+  resumeAfterVideo = !audio.paused;
+  audio.pause();
+});
+audio.addEventListener("play", () => {
+  if (!video.paused) audio.pause();
+});
+["pause", "ended"].forEach((ev) =>
+  video.addEventListener(ev, () => {
+    if (resumeAfterVideo && !userPausedMusic) tryPlay();
+    resumeAfterVideo = false;
+  })
+);
+renderPlayer();
+</script>
+</body>
+</html>
