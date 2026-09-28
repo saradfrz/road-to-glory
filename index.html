@@ -132,6 +132,11 @@ footer{border-top:1px solid var(--mauve-shadow);padding:1.75rem var(--pad) 6.5re
   .player .label{font-size:.9rem;white-space:normal;flex:1}
   .card-head{gap:.85rem}
   .thumb{flex-basis:100px}
+  /* Hero: let the image span the full phone width at its natural aspect ratio (no side crop) */
+  .hero{height:auto;min-height:0}
+  .hero img{width:100%;height:auto;object-fit:contain}
+  /* Instrument description: show the full text instead of truncating with an ellipsis */
+  .card .desc{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -1086,26 +1091,42 @@ function renderPlayer() {
 function tryPlay() {
   return audio.play().catch(() => { /* blocked until a user gesture */ });
 }
+let autoMuted = false; // true while the song is playing muted only because the browser blocked sound autoplay
+function releaseAutoMute() {
+  if (!autoMuted) return;
+  autoMuted = false;
+  audio.muted = false;
+}
 playBtn.addEventListener("click", () => {
+  releaseAutoMute();
   if (audio.paused) { userPausedMusic = false; tryPlay(); }
   else { userPausedMusic = true; audio.pause(); }
 });
-muteBtn.addEventListener("click", () => { audio.muted = !audio.muted; renderPlayer(); });
+muteBtn.addEventListener("click", () => { autoMuted = false; audio.muted = !audio.muted; renderPlayer(); });
 ["play", "pause", "volumechange"].forEach((ev) => audio.addEventListener(ev, renderPlayer));
 
-// Try to autoplay right away. Browsers usually block this until the visitor interacts,
-// so keep retrying on real activation events (pointerdown/touchstart don't count in all browsers).
-tryPlay();
+// Autoplay on page load. Browsers block audible autoplay until the visitor interacts, so:
+// 1) try normal playback; 2) if blocked, start it muted (always allowed) and 3) unmute on the first real gesture.
 const ACTIVATION_EVENTS = ["click", "pointerup", "touchend", "keydown"];
 function startOnGesture() {
-  if (userPausedMusic || !video.paused || !audio.paused) return;
+  if (userPausedMusic || !video.paused) return;
+  if (autoMuted && !audio.paused) { releaseAutoMute(); removeGestureListeners(); return; }
+  if (!audio.paused) { removeGestureListeners(); return; }
   audio.play().then(removeGestureListeners).catch(() => { /* keep listening */ });
 }
 function removeGestureListeners() {
   ACTIVATION_EVENTS.forEach((ev) => window.removeEventListener(ev, startOnGesture));
 }
 ACTIVATION_EVENTS.forEach((ev) => window.addEventListener(ev, startOnGesture, { passive: true }));
-audio.addEventListener("play", removeGestureListeners);
+
+audio.play().catch(() => {
+  audio.muted = true;
+  autoMuted = true;
+  return audio.play();
+}).catch(() => {
+  autoMuted = false;
+  audio.muted = false; // even muted autoplay was blocked: wait for a gesture
+});
 
 // Stop the background music before the video plays, and never let both run together.
 video.addEventListener("play", () => {
